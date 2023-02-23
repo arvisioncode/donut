@@ -61,8 +61,18 @@ class DonutDataset(Dataset):
         self.prompt_end_token = prompt_end_token if prompt_end_token else task_start_token
         self.sort_json_key = sort_json_key
 
+        if self.split in ["val", "validation"]: self.split = "test" # EMI
+        elif self.split == "split": self.split = "val"
+
+        print("**********************************************************************************")
+        print("LOADING DATASET: ", dataset_name_or_path)
+        print("SPLIT: ", self.split)
         self.dataset = load_dataset(dataset_name_or_path, split=self.split)
+        print(self.dataset)
         self.dataset_length = len(self.dataset)
+        for element in self.dataset:
+            print(element)
+        print("**********************************************************************************")
 
         self.gt_token_sequences = []
         for sample in self.dataset:

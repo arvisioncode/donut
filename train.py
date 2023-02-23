@@ -134,6 +134,8 @@ def train(config):
 
 
 if __name__ == "__main__":
+    torch.cuda.empty_cache() # EMI
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str, required=True)
     parser.add_argument("--exp_version", type=str, required=False)

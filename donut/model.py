@@ -221,7 +221,7 @@ class BARTDecoder(nn.Module):
         output = {
             "input_ids": input_ids,
             "attention_mask": attention_mask,
-            "past_key_values": past,
+            # "past_key_values": past,
             "use_cache": use_cache,
             "encoder_hidden_states": encoder_outputs.last_hidden_state,
         }
@@ -232,7 +232,7 @@ class BARTDecoder(nn.Module):
         input_ids,
         attention_mask: Optional[torch.Tensor] = None,
         encoder_hidden_states: Optional[torch.Tensor] = None,
-        past_key_values: Optional[torch.Tensor] = None,
+        # past_key_values: Optional[torch.Tensor] = None,
         labels: Optional[torch.Tensor] = None,
         use_cache: bool = None,
         output_attentions: Optional[torch.Tensor] = None,
@@ -266,7 +266,7 @@ class BARTDecoder(nn.Module):
             input_ids=input_ids,
             attention_mask=attention_mask,
             encoder_hidden_states=encoder_hidden_states,
-            past_key_values=past_key_values,
+            # past_key_values=past_key_values,
             use_cache=use_cache,
             output_attentions=output_attentions,
             output_hidden_states=output_hidden_states,
@@ -287,7 +287,7 @@ class BARTDecoder(nn.Module):
         return ModelOutput(
             loss=loss,
             logits=logits,
-            past_key_values=outputs.past_key_values,
+            # past_key_values=outputs.past_key_values,
             hidden_states=outputs.hidden_states,
             decoder_attentions=outputs.attentions,
             cross_attentions=outputs.cross_attentions,

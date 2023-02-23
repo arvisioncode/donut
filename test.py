@@ -41,10 +41,13 @@ def test(args):
         ground_truth = json.loads(sample["ground_truth"])
 
         if args.task_name == "docvqa":
+            print(f"INPUT:: <s_{args.task_name}><s_question>{ground_truth['gt_parses'][0]['question'].lower()}</s_question><s_answer>")
             output = pretrained_model.inference(
                 image=sample["image"],
                 prompt=f"<s_{args.task_name}><s_question>{ground_truth['gt_parses'][0]['question'].lower()}</s_question><s_answer>",
             )["predictions"][0]
+            print(f"OUTPUT:: {output}")
+
         else:
             output = pretrained_model.inference(image=sample["image"], prompt=f"<s_{args.task_name}>")["predictions"][0]
 

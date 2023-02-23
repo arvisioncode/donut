@@ -3,10 +3,14 @@ result_path: "./result"
 pretrained_model_name_or_path: "naver-clova-ix/donut-base"
 dataset_name_or_paths: ["./dataset/docvqa"] # should be prepared from https://rrc.cvc.uab.es/?ch=17
 sort_json_key: True
-train_batch_sizes: [2]
-val_batch_sizes: [4]
-input_size: [2560, 1920]
-max_length: 128
+# # # # train_batch_sizes: [2]
+train_batch_sizes: [1]
+# # # # val_batch_sizes: [4]
+val_batch_sizes: [1]
+# # # # input_size: [2560, 1920]
+input_size: [1280, 960]
+# # # # max_length: 128
+max_length: 64
 align_long_axis: False
 # num_nodes: 8 # memo: donut-base-finetuned-docvqa was trained with 8 nodes
 num_nodes: 1
@@ -14,7 +18,8 @@ seed: 2022
 lr: 3e-5
 warmup_steps: 10000
 num_training_samples_per_epoch: 39463
-max_epochs: 300
+# # # # max_epochs: 300
+max_epochs: 50
 max_steps: -1
 num_workers: 1
 # # # # num_workers: 8
