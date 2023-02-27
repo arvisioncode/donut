@@ -56,31 +56,24 @@ python train.py --config config/train_cord.yaml --pretrained_model_name_or_path 
 <!-- python train.py --config config/train_docvqa.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["nielsr/docvqa_1200_examples_donut"]' --exp_version "donut-docvqa-ft-nielsrdocvqa"  -->
 python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["nielsr/docvqa_1200_examples_donut"]' --exp_version "donut-docvqa-ft-nielsrdocvqa" 
 
-<!-- python train.py --config config/train_docvqa.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["emigomez/donut-docvqa-oculist"]' --exp_version "donut-docvqa-ft-oculist"  -->
-python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["emigomez/donut-docvqa-oculist-test"]' --exp_version "donut-docvqa-ft-oculist" 
+python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["aymane/donut-docvqa-oculist-test"]' --exp_version "donut-docvqa-ft-oculist" 
 
-python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["./dataset/bupa_docvqa_part1/"]' --exp_version "donut-docvqa-ft-oculist" 
-
-python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["./dataset/bupa_docvqa_bothparts12/"]' --exp_version "donut-docvqa-ft-oculist" 
+python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["./dataset/bupa_docvqa_dataset_v2/"]' --exp_version "donut-docvqa-ft-oculist" 
 
 
 
 ## INFERENCE - EVALUATION
 
 # FINE-TUNED::: donut-docvqa-oculist-test
-<!-- python test.py --dataset_name_or_path emigomez/donut-docvqa-oculist-test --pretrained_model_name_or_path ./result/train_docvqa_tests/donut-docvqa-ft-oculist --save_path ./result/docvqa-output-ft.json --task_name docvqa -->
-python test.py --dataset_name_or_path emigomez/donut-docvqa-oculist-onlytest --pretrained_model_name_or_path ./result/train_docvqa_tests/donut-docvqa-ft-oculist --save_path ./result/docvqa-output-ft.json --task_name docvqa
+python test.py --dataset_name_or_path aymane/donut-docvqa-oculist-onlytest --pretrained_model_name_or_path ./result/train_docvqa_tests/donut-docvqa-ft-oculist --save_path ./result/docvqa-output-ft.json --task_name docvqa
 
 python test.py --dataset_name_or_path "./dataset/bupa_docvqa_part1_test/" --pretrained_model_name_or_path ./result/train_docvqa_gpu/donut-docvqa-ft-bupa-part1 --save_path ./result/donut-docvqa-ft-bupa-part1.json --task_name docvqa
 
-python test.py --dataset_name_or_path "./dataset/bupa_docvqa_bothparts12/" --pretrained_model_name_or_path ./result/train_docvqa_gpu/donut-docvqa-ft-oculist --save_path ./result/donut-docvqa-ft-bupa-part1and2.json --task_name docvqa
-
 
 # ORIGINAL::: naver-clova-ix/donut-base-finetuned-docvqa
-<!-- python test.py --dataset_name_or_path emigomez/donut-docvqa-oculist-test --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/docvqa-output-original.json --task_name docvqa -->
-python test.py --dataset_name_or_path emigomez/donut-docvqa-oculist-onlytest --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/docvqa-output-original.json --task_name docvqa
+python test.py --dataset_name_or_path aymane/donut-docvqa-oculist-onlytest --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/docvqa-output-original.json --task_name docvqa
 
-python test.py --config config/train_docvqa_tests.yaml --dataset_name_or_path emigomez/donut-docvqa-oculist-onlytest --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/docvqa-output-original.json --task_name docvqa
+python test.py --config config/train_docvqa_tests.yaml --dataset_name_or_path aymane/donut-docvqa-oculist-onlytest --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/docvqa-output-original.json --task_name docvqa
 
 python test.py --dataset_name_or_path "./dataset/bupa_docvqa_bothparts12/" --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/donut-docvqa-ft-bupa-part1and2-original.json --task_name docvqa
 
@@ -98,3 +91,8 @@ EL PROBLEMA PUEDE SER OVERFITTING!!!!!!!!!!
 TODO: CHECAK RESULTADOS EN EL DATASET ORIGINAL , PARA VER SI ESTE MODELO TUNEADO EMPEORA AHI
 
 
+
+## ONNX
+Para configurar el DONUT2ONNX, tengoq ue usar una maquina remota
+Al ser remota, instalo jupyter en un entorno de conda, y luego sigo estos pasos para poder usar jupyter en remoto:
+https://docs.anaconda.com/anaconda/user-guide/tasks/remote-jupyter-notebook/ 

@@ -1,6 +1,7 @@
 import json
 import re
 from datasets import load_dataset
+import pandas as pd
 
 
 def add_ground_truth(examples):
@@ -40,7 +41,7 @@ def add_file_name(examples):
     return examples
 
 
-def main(FILE_INPUT, FILE_OUTPUT):
+def main_json(FILE_INPUT, FILE_OUTPUT):
     input = open(FILE_INPUT)
     output = open(FILE_OUTPUT, 'w') 
     data = json.load(input)
@@ -57,7 +58,7 @@ def main(FILE_INPUT, FILE_OUTPUT):
         del line_out["data_split"]
         del line_out["is_table"]
 
-        print(line_out)
+        # print(line_out)
         json.dump(line_out, output)
         output.write('\n')
 
@@ -65,13 +66,48 @@ def main(FILE_INPUT, FILE_OUTPUT):
     output.close()
 
 
-if __name__ == "__main__":
-    FILE_INPUT = "./dataset/bupa_docvqa_dataset/metadata.json"
-    FILE_OUTPUT = "./dataset/bupa_docvqa_dataset/metadata_gt.jsonl"
-    main(FILE_INPUT, FILE_OUTPUT)
+def main_excell(FILE_INPUT, FILE_OUTPUT):
+    input_file = open(FILE_INPUT)
+    data = json.load(input_file)
 
+    # Create a list to hold the processed data
+    line_result = []
+
+    # Loop through the data and process each line
+    for line in data:
+        line = add_file_name(line)
+        line = add_ground_truth(line)
+
+        # Remove unnecessary fields
+        del line["image"]
+        del line["question"]
+        del line["docId"]
+        del line["answers"]
+        del line["data_split"]
+        del line["is_table"]
+
+        print(line)
+        line_result.append(line)
+
+    # Create a DataFrame from the processed data
+    df = pd.DataFrame(line_result)
+    # Save the DataFrame to an Excel file
+    df.to_csv(FILE_OUTPUT, sep=';', index=False)
+    print(df)
+    input_file.close()
+
+
+if __name__ == "__main__":
+    FILE_INPUT = "./dataset/bupa_docvqa_dataset_v2/metadata.json"
+    FILE_OUTPUT = "./dataset/bupa_docvqa_dataset_v2/metadata_gt.jsonl"
+    main_json(FILE_INPUT, FILE_OUTPUT)
+
+    FILE_OUTPUT = "./dataset/bupa_docvqa_dataset_v2/metadata_gt.csv"
+    main_excell(FILE_INPUT, FILE_OUTPUT)
+    ### IMPORTANTE: REEMPLAZAR A MANO "" POR "
+    
 
     # Check dataset created as will be downloaded in training
-    data = load_dataset("dataset/bupa_docvqa_bothparts12/", split="train")
-    print(data)
-    print(data[10])
+    data = load_dataset("dataset/bupa_docvqa_dataset_v2/", split="train")
+    # print(data)
+    # print(data[10])
