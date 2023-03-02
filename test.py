@@ -46,7 +46,12 @@ def test(args):
                 image=sample["image"],
                 prompt=f"<s_{args.task_name}><s_question>{ground_truth['gt_parses'][0]['question'].lower()}</s_question><s_answer>",
             )["predictions"][0]
-            print(f"OUTPUT:: {output}")
+            output_confidences = pretrained_model.inference(
+                image=sample["image"],
+                prompt=f"<s_{args.task_name}><s_question>{ground_truth['gt_parses'][0]['question'].lower()}</s_question><s_answer>",
+            )
+            print(f"OUTPUT:: {output_confidences}")
+
 
         else:
             output = pretrained_model.inference(image=sample["image"], prompt=f"<s_{args.task_name}>")["predictions"][0]

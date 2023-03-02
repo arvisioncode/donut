@@ -75,13 +75,16 @@ python test.py --dataset_name_or_path aymane/donut-docvqa-oculist-onlytest --pre
 
 python test.py --config config/train_docvqa_tests.yaml --dataset_name_or_path aymane/donut-docvqa-oculist-onlytest --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/docvqa-output-original.json --task_name docvqa
 
-python test.py --dataset_name_or_path "./dataset/bupa_docvqa_bothparts12/" --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/donut-docvqa-ft-bupa-part1and2-original.json --task_name docvqa
+python test.py --dataset_name_or_path "./dataset/bupa_docvqa_dataset_v2/" --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/donut-docvqa-ft-bupa-part1and2-original.json --task_name docvqa
+
+
+python test.py --dataset_name_or_path aymanechilah/donut-docvqa-concert1 --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --save_path ./result/donut-docvqa-ft-bupa-part1and2-original.json --task_name docvqa
 
 
 ## SINGLE INFERENCE
 I make an script for docvqa: inference.py
 
-python inference.py --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --image_path ./dataset/bupa_docvqa_bothparts12/train/Caris_12345678A_05.jpg --question "What is the page number?"
+python inference.py --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --image_path ./dataset/bupa_docvqa_dataset_v2/train/Caris_12345678A_05.jpg --question "What is the page number?"
 
 
 ## RESULTS 
@@ -96,3 +99,6 @@ TODO: CHECAK RESULTADOS EN EL DATASET ORIGINAL , PARA VER SI ESTE MODELO TUNEADO
 Para configurar el DONUT2ONNX, tengoq ue usar una maquina remota
 Al ser remota, instalo jupyter en un entorno de conda, y luego sigo estos pasos para poder usar jupyter en remoto:
 https://docs.anaconda.com/anaconda/user-guide/tasks/remote-jupyter-notebook/ 
+
+
+## FINALMENTE SI SE PUDO ENTRENAR CON EL NOTEBOOK, USAR EL ORIGINAL PARA PROBAR Y LUEGO CAMBIAR LOS DATOS

@@ -473,9 +473,16 @@ class DonutModel(PreTrainedModel):
             bad_words_ids=[[self.decoder.tokenizer.unk_token_id]],
             return_dict_in_generate=True,
             output_attentions=return_attentions,
+            output_scores=True
         )
 
-        output = {"predictions": list()}
+        # calcuate confidences
+        gen_sequences = decoder_output.sequences[:, prompt_tensors.shape[-1]:-1]
+        probs = torch.stack(decoder_output.scores, dim=1).softmax(-1)
+        gen_probs = torch.gather(probs, 2, gen_sequences[:, :, None]).squeeze(-1)
+        unique_prob_per_sequence = gen_probs.prod(-1)
+
+        output = {"predictions": list(), "confidences": unique_prob_per_sequence}
         for seq in self.decoder.tokenizer.batch_decode(decoder_output.sequences):
             seq = seq.replace(self.decoder.tokenizer.eos_token, "").replace(self.decoder.tokenizer.pad_token, "")
             seq = re.sub(r"<.*?>", "", seq, count=1).strip()  # remove first task start token

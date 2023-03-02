@@ -24,7 +24,8 @@ def test(args):
     img = Image.open(args.image_path)
     print(f"INPUT:: image:{print(args.image_path)} question:{question}")
     
-    output = pretrained_model.inference(image=img,prompt=question,)["predictions"][0]
+    #output = pretrained_model.inference(image=img,prompt=question,)["predictions"][0]
+    output = pretrained_model.inference(image=img,prompt=question,)
     print(f"OUTPUT:: answer:{output}")
 
     return output
@@ -39,3 +40,4 @@ if __name__ == "__main__":
 
     print("TASK NAME: docvqa")
     predictions = test(args)
+
