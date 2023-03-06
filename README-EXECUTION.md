@@ -86,6 +86,7 @@ I make an script for docvqa: inference.py
 
 python inference.py --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --image_path ./dataset/bupa_docvqa_dataset_v2/train/Caris_12345678A_05.jpg --question "What is the page number?"
 
+python inference.py --pretrained_model_name_or_path naver-clova-ix/donut-base-finetuned-docvqa --image_path ./dataset/image_divided/Caris_12345678B_01.jpg --question "What is sex?"
 
 ## RESULTS 
 
