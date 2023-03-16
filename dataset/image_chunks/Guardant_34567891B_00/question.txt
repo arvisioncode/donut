@@ -1,3 +1,11 @@
+'which genomic alterations are mentioned in the table?', 
+	'answer': 'genomic alterations identificat'}], 
+	'confidences':[0.5039]
+
+'what is the report date?', 
+	'answer': '20 may'}], 
+	'confidences': [1.]
+
 'what is the diagnosis?', 
 	'answer': 'lung'}], 
 	'confidences': [0.9985]
@@ -5,21 +13,6 @@
 'when is the specimen received?', 
 	'answer': '08 may'}], 
 	'confidences': [0.9888]
-
-'which genomic alterations are mentioned in the table?', 
-	'answer': 'genomic alterations identificat'}], 
-	'confidences':[0.5039]
-
-'which are the additional disease-relevant genes with no reportable alterations detected?', 
-	'answer': 'mcll'}], 
-	'confidences': [0.3721]
-
-
-
-
-'what is the report date?', 
-	'answer': '20 may'}], 
-	'confidences': [1.]
 
 'what is the specimen site?', 
 	'answer': 'lung'}], 
@@ -29,5 +22,7 @@
 	'answer': 'block'}], 
 	'confidences': [0.9878]
 
-
+'which are the additional disease-relevant genes with no reportable alterations detected?', 
+	'answer': 'mcll'}], 
+	'confidences': [0.3721]
 
