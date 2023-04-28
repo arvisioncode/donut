@@ -52,6 +52,10 @@ dataset have to be divided in 'test' and 'train'. Check notebooks folder
 # cord
 python train.py --config config/train_cord.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base" --dataset_name_or_paths '["naver-clova-ix/cord-v2"]' --exp_version "test_experiment" 
 
+python train.py --config config/train_cord_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base" --dataset_name_or_paths '["arvisioncode/donut-funsd"]' --exp_version "donut-funsd-gpu" 
+
+
+
 # docvqa
 <!-- python train.py --config config/train_docvqa.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["nielsr/docvqa_1200_examples_donut"]' --exp_version "donut-docvqa-ft-nielsrdocvqa"  -->
 python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["nielsr/docvqa_1200_examples_donut"]' --exp_version "donut-docvqa-ft-nielsrdocvqa" 
@@ -60,7 +64,7 @@ python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or
 
 python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base-finetuned-docvqa" --dataset_name_or_paths '["./dataset/bupa_docvqa_dataset_v2/"]' --exp_version "donut-docvqa-ft-oculist" 
 
-
+python train.py --config config/train_docvqa_gpu.yaml --pretrained_model_name_or_path "naver-clova-ix/donut-base" --dataset_name_or_paths '["./../rrc_docvqa/"]' --exp_version "donut-docvqa-base-rrc-ft"
 
 ## INFERENCE - EVALUATION
 
